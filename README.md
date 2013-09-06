@@ -39,39 +39,39 @@ Here is a sample about injecting a controller in Pimple.
 
   class TestController
   {
-  	private $text;
-  	public function __construct($text)
-  	{
-  		$this->text = $text;
-  	}
+  	  private $text;
+  	  public function __construct($text)
+  	  {
+  		  $this->text = $text;
+  	  }
 
-  	public function testAction()
-  	{
-  		return new JsonResponse(array("hello"=>$this->text));
-  	}
+  	  public function testAction()
+  	  {
+  		  return new JsonResponse(array("hello"=>$this->text));
+  	  }
   }
   ```
 - [Create an instance](http://mouf-php.com/packages/mouf/mouf/doc/mouf_di_ui.md) 'mycontroller' for your controller in Mouf.
-  When this is over, you should see this in Mouf UI:
+  When this is over, you should see this in Mouf UI:  
   ![Controller's instance](doc/images/mycontroller_instance.png)
 - Init your application using the extended `Mouf\Silex\Application` class:
   ```php
-// Load Mouf (and Composer's autoloader)
-require_once __DIR__.'/mouf/Mouf.php';
+  // Load Mouf (and Composer's autoloader)
+  require_once __DIR__.'/mouf/Mouf.php';
 
-// Get Silex app with Mouf support
-$app = new Mouf\Silex\Application();
+  // Get Silex app with Mouf support
+  $app = new Mouf\Silex\Application();
 
-// Register Silex's controllers support
-$app->register(new Silex\Provider\ServiceControllerServiceProvider());
+  // Register Silex's controllers support
+  $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
-// Register the Mouf DI container
-$app->registerMoufManager(Mouf\MoufManager::getMoufManager());
+  // Register the Mouf DI container
+  $app->registerMoufManager(Mouf\MoufManager::getMoufManager());
 
-// 'mycontroller' instance is declared in Mouf!
-$app->get('/hello', "mycontroller:testAction");
+  // 'mycontroller' instance is declared in Mouf!
+  $app->get('/hello', "mycontroller:testAction");
 
-$app->run();  
+  $app->run();  
   ```
   
 See how great it is? You can use the simple routing mechanism of Pimple and get rid of all the
@@ -81,7 +81,8 @@ spaguetti code building your dependencies.
 Known limits
 ------------
 
-This project is a proof-of-concept. It prooves that is it possible to chain 2 DI containers easily.
+This project is a proof-of-concept. It prooves that is it possible to chain 2 DI containers easily (this
+package contains... 10 lines of code!)
 It also shows the limits of this technique. Indeed, it is not possible from Mouf to refer to an
 object declared in Pimple (no possible round-trip). This might however become possible, should a 
 standard about DIC interoperability become true.
