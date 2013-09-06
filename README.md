@@ -51,7 +51,7 @@ Here is a sample about injecting a controller in Pimple.
   	  }
   }
   ```
-- [Create an instance](http://mouf-php.com/packages/mouf/mouf/doc/mouf_di_ui.md) 'mycontroller' for your controller in Mouf.
+- [Create an instance](http://mouf-php.com/packages/mouf/mouf/version/2.0-dev/doc/mouf_di_ui.md) `mycontroller` for your controller in Mouf.
   When this is over, you should see this in Mouf UI:  
   ![Controller's instance](doc/images/mycontroller_instance.png)
 - Init your application using the extended `Mouf\Silex\Application` class:
